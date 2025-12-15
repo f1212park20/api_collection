@@ -79,3 +79,35 @@ $("#searchBtn").click(function () {
         }
     });
 });
+
+$("#searchBtn1").click(function () {
+    const search=$("#search").val();
+    const startDate=$("#start1").val();
+    const endDate=$("#end1").val();
+
+
+    $.ajax({
+        url: "/predict",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            search: search,
+            start_date: startDate,
+            end_date: endDate
+        }),
+        success: function (res) {
+//            console.log(res);
+//            alert("예측 종가: " + res.predicted_price);
+              $("#resultTicker").text(res.ticker);
+
+              // 결과창 보이기
+             $("#resultBox").show();
+
+        },
+        error: function (err) {
+            console.error(err);
+            alert("서버 오류");
+        }
+    });
+
+});

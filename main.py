@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 from pykrx import stock
 from pykrx import bond
+from sklearn.linear_model import LinearRegression
+import numpy as np
 
 app = Flask(__name__)
 
@@ -31,6 +33,37 @@ def tickers():
 
     # 예시: 단순히 받은 날짜를 다시 반환
     return jsonify({"status": "ok", "date": df_json})
+
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    data = request.get_json()
+
+    start_date = data["start_date"]
+    end_date = data["end_date"]
+    ticker=data["search"]
+
+    df = stock.get_market_ohlcv_by_date(
+        fromdate=start_date.replace("-", ""),
+        todate=end_date.replace("-", ""),
+        ticker=ticker
+    )
+
+    if df.empty:
+        return jsonify({"error": "데이터 없음"}), 400
+
+    prices = df["종가"].values
+    X = np.arange(len(prices)).reshape(-1, 1)
+
+    model = LinearRegression()
+    model.fit(X, prices)
+
+    pred_price = model.predict([[len(prices)]])[0]
+
+    return jsonify({
+        "ticker": ticker,
+        "predicted_price": int(pred_price)
+    })
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
