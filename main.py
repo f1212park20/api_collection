@@ -59,7 +59,6 @@ def predict():
     model.fit(X, prices)
 
     pred_price = model.predict([[len(prices)]])[0]
-
     return jsonify({
         "ticker": ticker,
         "predicted_price": int(pred_price)

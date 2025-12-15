@@ -98,7 +98,7 @@ $("#searchBtn1").click(function () {
         success: function (res) {
 //            console.log(res);
 //            alert("예측 종가: " + res.predicted_price);
-              $("#resultTicker").text(res.ticker);
+              $("#resultTicker").text(res.predicted_price);
 
               // 결과창 보이기
              $("#resultBox").show();
