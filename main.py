@@ -32,4 +32,6 @@ def tickers():
     # 예시: 단순히 받은 날짜를 다시 반환
     return jsonify({"status": "ok", "date": df_json})
 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
 
