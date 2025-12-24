@@ -4,7 +4,17 @@ from pykrx import bond
 from sklearn.linear_model import LinearRegression
 import numpy as np
 from datetime import date
+import psutil
+import logging
 
+logging.basicConfig(filename='server_metrics.log', level=logging.INFO,
+                    format='%(asctime)s - %(message)s')
+
+def log_server_metrics(action_name=""):
+    cpu = psutil.cpu_percent(interval=0)
+    memory = psutil.virtual_memory().percent
+    disk = psutil.disk_usage('/').percent
+    logging.info(f"[{action_name}] CPU:{cpu}%, Memory:{memory}%, Disk:{disk}%")
 
 app = Flask(__name__)
 
@@ -14,6 +24,8 @@ def hello():
 
 @app.route("/tickers", methods=["POST"])
 def tickers():
+    log_server_metrics("tickers_request")  # 조회 시 서버 상태 기록
+
     date = request.json.get("date")  # JS에서 전달된 날짜 받기
     start=request.json.get("start")
     end=request.json.get("end")

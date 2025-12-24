@@ -1,0 +1,46 @@
+2025-12-24 14:18:42,296 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:18:42,297 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:19:38,988 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:19:38,988 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:20:46,762 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:20:46,763 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:20:57,066 - 127.0.0.1 - - [24/Dec/2025 14:20:57] "GET / HTTP/1.1" 200 -
+2025-12-24 14:20:57,458 - 127.0.0.1 - - [24/Dec/2025 14:20:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-12-24 14:20:57,458 - 127.0.0.1 - - [24/Dec/2025 14:20:57] "[36mGET/static/js/scripts.js HTTP/1.1[0m" 304 -
+2025-12-24 14:20:57,480 - 127.0.0.1 - - [24/Dec/2025 14:20:57] "GET /static/js/index.js HTTP/1.1"  200 -
+2025-12-24 14:20:57,485 - 127.0.0.1 - - [24/Dec/2025 14:20:57] "[36mGET /static/js/datatables-simple-demo.js HTTP/1.1[0m" 304 -
+2025-12-24 14:21:08,042 - [tickers_request] CPU:0.1%, Memory:31.1%, Disk:21.5%
+2025-12-24 14:21:12,896 - 127.0.0.1 - - [24/Dec/2025 14:21:12] "POST /tickers HTTP/1.1" 200 -
+2025-12-24 14:22:04,321 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+    log_server_metrics("tickers_request")  # 조회 시 서버 상태 기록
+2025-12-24 14:22:04,321 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:23:30,732 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:23:30,732 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:23:38,252 - 127.0.0.1 - - [24/Dec/2025 14:23:38] "GET / HTTP/1.1" 200 -
+2025-12-24 14:23:38,581 - 127.0.0.1 - - [24/Dec/2025 14:23:38] "[36mGET /static/js/datatables-simple-demo.js HTTP/1.1[0m" 304 -
+2025-12-24 14:23:38,582 - 127.0.0.1 - - [24/Dec/2025 14:23:38] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-12-24 14:23:38,582 - 127.0.0.1 - - [24/Dec/2025 14:23:38] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+2025-12-24 14:23:38,583 - 127.0.0.1 - - [24/Dec/2025 14:23:38] "[36mGET /static/js/scripts.js HTTP/1.1[0m" 304 -
+2025-12-24 14:24:13,036 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:24:13,036 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:25:06,210 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:25:06,210 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:25:06,211 -  * Restarting with stat
+2025-12-24 14:25:07,698 -  * Debugger is active!
+2025-12-24 14:25:07,701 -  * Debugger PIN: 136-516-764
+2025-12-24 14:25:46,552 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-24 14:25:46,552 - [33mPress CTRL+C to quit[0m
+2025-12-24 14:25:57,170 - 127.0.0.1 - - [24/Dec/2025 14:25:57] "GET / HTTP/1.1" 200 -
+2025-12-24 14:25:57,501 - 127.0.0.1 - - [24/Dec/2025 14:25:57] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+2025-12-24 14:25:57,501 - 127.0.0.1 - - [24/Dec/2025 14:25:57] "[36mGET /static/js/scripts.js HTTP/1.1[0m" 304 -
+2025-12-24 14:25:57,501 - 127.0.0.1 - - [24/Dec/2025 14:25:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-12-24 14:25:57,502 - 127.0.0.1 - - [24/Dec/2025 14:25:57] "[36mGET /static/js/datatables-simple-demo.js HTTP/1.1[0m" 304 -
+2025-12-24 14:26:10,801 - [tickers_request] CPU:0.0%, Memory:33.9%, Disk:21.5%
+2025-12-24 14:26:15,156 - 127.0.0.1 - - [24/Dec/2025 14:26:15] "POST /tickers HTTP/1.1" 200 -
