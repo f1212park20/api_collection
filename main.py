@@ -4,6 +4,10 @@ from pykrx import bond
 from sklearn.linear_model import LinearRegression
 import numpy as np
 from datetime import date
+import requests
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+import pickle
 import psutil
 import logging
 
@@ -103,6 +107,64 @@ def admin():
     print(df.index.name)
 
     return render_template("admin.html", rows=data)
+
+
+# 테스트용 벡터화 및 모델
+sample_texts = ["주식 상승", "주가 폭락"]
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(sample_texts)
+
+# 간단한 학습
+model = MultinomialNB()
+model.fit(X, ["긍정", "부정"])
+
+
+@app.route('/news')
+def index():
+    return render_template("news.html")
+
+#뉴스 예측
+@app.route("/news_searh", methods=["POST"])
+def news():
+    log_server_metrics("tickers_request")  # 조회 시 서버 상태 기록
+
+    data = request.get_json()
+    print(data)
+    query = data.get("query", "경제")  # JS에서 보낸 query 사용
+
+    url = "https://openapi.naver.com/v1/search/news.json"
+
+    headers = {
+        "X-Naver-Client-Id": "S6p4jURMeSFIHYqo9gv9",
+        "X-Naver-Client-Secret": "SmqTtjh5mu"
+    }
+    params = {
+        "query": query,
+        "display": 5,
+        "start": 1,
+        "sort": "date"
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+    news_items = response.json().get('items', [])
+    print(news_items)
+
+    news_list = []
+    for news in news_items:
+        title=news['title']
+        link=news['link']
+        # 벡터화 후 예측
+        X_news = vectorizer.transform([title])
+        prediction = model.predict(X_news)[0]
+        print(prediction)
+
+        news_list.append({
+            "title": title,
+            "link": link,
+            "prediction": prediction
+        })
+
+    return jsonify(news_list)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

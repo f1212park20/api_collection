@@ -115,3 +115,38 @@ $("#searchBtn1").click(function () {
     });
 
 });
+
+
+// 뉴스 예측
+function search() {
+    const query = document.getElementById("keyword").value;
+    console.log(query)
+    fetch("/news_searh", {  // 여기 수정
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({query: query})
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("서버 응답 실패: " + res.status);
+        return res.json();
+    })
+    .then(data => {
+        console.log(data); // 받은 뉴스 데이터 확인
+        // tbody에 innerHTML로 넣으면 됨
+        const tbody = document.getElementById("resultBody");
+        tbody.innerHTML = ""; // 기존 내용 초기화
+
+        data.forEach(news => {
+            tbody.innerHTML += `
+                <tr>
+                    <td><a href="${news.link}" target="_blank">${news.title}</a></td>
+                    <td>${news.prediction}</td>
+                </tr>
+            `;
+        });
+    })
+    .catch(err => {
+        console.error("데이터 요청 실패:", err);
+        alert("데이터 요청 실패: " + err.message);
+    });
+}

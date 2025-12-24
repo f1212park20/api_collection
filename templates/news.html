@@ -6,14 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Tables - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="static/css/styles.css" rel="stylesheet" />
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script>
-            google.charts.load('current', {'packages':['corechart']});
-        </script>
-
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -58,13 +53,6 @@
                             </a>
 
 
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                                </nav>
-                            </div>
-
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -103,89 +91,27 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <input type="text" id="date" placeholder="종목번호를 입력하세요">
-                        <input type="date" id="start" placeholder="시작일 입력">
-                        <input type="date" id="end" placeholder="끝일 입력">
-                        <button id="searchBtn">검색</button>
+                        <h1 class="mt-4">뉴스예측</h1>
 
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        거래량
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="chart_div" style="width: 100%; height: 500px; margin-top: 20px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        등락률
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="chart_div1" style="width: 100%; height: 500px; margin-top: 20px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
+                        <input type="text" id="keyword" placeholder="검색어 입력">
+                        <button id="searchBtn3" onclick="search()">검색</button>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                검색 결과
+                                결과
                             </div>
                             <div class="card-body">
-
-                                <table id="resultTable" border="1" >
+                                <table id="resultTable" border="1">
                                     <thead>
                                         <tr>
-                                            <th>날짜</th>
-                                            <th>시가</th>
-                                            <th>고가</th>
-                                            <th>저가</th>
-                                            <th>종가</th>
-                                            <th>거래량</th>
-                                            <th>거래대금</th>
-                                            <th>등락률</th>
+                                            <th>제목</th>
+                                            <th>예측</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="resultBody">
-                                    </tbody>
+                                    <tbody id="resultBody"></tbody>
                                 </table>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-xl-5">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        수익률에측
-                                    </div>
-                                    <div class="card-body">
-                                        <input type="date" id="start1" placeholder="시작일 입력">
-                                        <input type="date" id="end1" placeholder="끝일 입력">
-                                        <input type="text" id="search" placeholder="종목 입력">
-                                        <button id="searchBtn1">검색</button>
-
-                                        <div id="resultbox">
-                                            <p><b>수익률:</b> <span id="resultTicker"></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
