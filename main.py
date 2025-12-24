@@ -135,8 +135,8 @@ def news():
     url = "https://openapi.naver.com/v1/search/news.json"
 
     headers = {
-        "X-Naver-Client-Id": "S6p4jURMeSFIHYqo9gv9",
-        "X-Naver-Client-Secret": "SmqTtjh5mu"
+        "X-Naver-Client-Id": "",
+        "X-Naver-Client-Secret": ""
     }
     params = {
         "query": query,
