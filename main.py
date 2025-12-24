@@ -3,13 +3,14 @@ from pykrx import stock
 from pykrx import bond
 from sklearn.linear_model import LinearRegression
 import numpy as np
+from datetime import date
+
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
     return render_template("index.html")
-
 
 @app.route("/tickers", methods=["POST"])
 def tickers():
@@ -73,6 +74,23 @@ def predict():
         "latest_daily_return": round(df['일간수익률'].iloc[-1]*100, 2),
         "cumulative_return": round(df['누적수익률'].iloc[-1]*100, 2)
     })
+
+# 관리자 페이지
+@app.route('/admin')
+def admin():
+    today = date.today()
+    today_str = today.strftime("%Y%m%d")
+    print(type(today_str))
+
+    df=stock.get_market_ohlcv(today_str)
+
+    df.columns = df.columns.str.strip()
+    df.columns = df.columns.str.replace('\n', '', regex=False)
+
+    data = df.reset_index().to_dict(orient="records")
+    print(df.index.name)
+
+    return render_template("admin.html", rows=data)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
